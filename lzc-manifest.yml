@@ -12,8 +12,8 @@ application:
       service: sqlpage
 services:
   sqlpage:
-    # upstream: lovasoa/sqlpage:v0.47.0
-    image: docker.1ms.run/lovasoa/sqlpage:v0.47.0
+    # upstream: lovasoa/sqlpage:v1.21.2
+    image: docker.1ms.run/lovasoa/sqlpage:v1.21.2
     environment:
       - TZ=Asia/Shanghai
     binds:

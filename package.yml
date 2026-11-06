@@ -1,6 +1,6 @@
 package: community.lazycat.app.sqlpage
 name: SQLPage
-version: 0.47.0
+version: 1.21.2
 description: "SQL-only web application builder: write .sql files that query a database and render tables, forms, charts and maps as HTML."
 min_os_version: "1.5.0"
 homepage: https://github.com/sqlpage/SQLPage
