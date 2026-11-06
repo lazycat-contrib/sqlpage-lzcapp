@@ -1,0 +1,47 @@
+application:
+  title: SQLPage
+  subtitle: 用 SQL 构建数据应用网站
+  subdomain: sqlpage
+  multi_instance: false
+  upstreams:
+    - location: /
+      backend: http://sqlpage:8080/
+  ingress:
+    - protocol: tcp
+      port: 8080
+      service: sqlpage
+services:
+  sqlpage:
+    # upstream: lovasoa/sqlpage:v0.47.0
+    image: docker.1ms.run/lovasoa/sqlpage:v0.47.0
+    environment:
+      - TZ=Asia/Shanghai
+    binds:
+      - /lzcapp/var/sqlpage/config:/etc/sqlpage
+      - /lzcapp/var/sqlpage/www:/var/www
+usage: |
+  SQLPage 是一个「只用 SQL 写网站」的应用构建器：在站点目录里放
+  .sql 文件，每个文件就是一个页面，SELECT 出来的数据会自动渲染成
+  表格、卡片、图表或地图，还可以用表单组件接收用户输入并写回数据库。
+  自带 SQLite（数据存在 /etc/sqlpage/sqlpage.db），也支持通过配置
+  连接 MySQL/PostgreSQL/MSSQL 等外部数据库。
+
+  使用方法：
+  1. 打开应用即可看到内置示例页面（基于官方 examples 的默认站点）。
+  2. 编辑自己的页面：把 .sql 文件放到 /lzcapp/var/sqlpage/www
+     （对应容器内 /var/www），刷新即生效；建议先从官方示例抄起改。
+  3. 高级配置：在 /lzcapp/var/sqlpage/config 放 sqlpage.json
+     （对应容器内 /etc/sqlpage），可切换数据库、端口、站点信息等。
+
+  数据与安全：
+  - SQLPage 本身没有账号/登录体系，页面默认对任何能访问的人开放，
+    因此本包不做 public_path 直连，由平台入口鉴权保护访问。
+  - 如果你的 SQL 页面涉及敏感数据，请务必依赖平台鉴权，或按官方
+    文档自行在数据库层做权限控制。
+  - 全部数据（SQLite 数据库、页面文件）都在 /lzcapp/var/sqlpage，
+    随应用持久化；卸载应用会一并删除，请自行备份。
+  - 单容器运行，无外部依赖。
+
+  说明：
+  - 未做实机验证：示例页渲染、.sql 页面编辑生效、数据库连接与
+    重启后数据持久化均未在设备上实测。

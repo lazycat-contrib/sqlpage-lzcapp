@@ -1,0 +1,18 @@
+package: community.lazycat.app.sqlpage
+name: SQLPage
+version: 0.47.0
+description: "SQL-only web application builder: write .sql files that query a database and render tables, forms, charts and maps as HTML."
+min_os_version: "1.5.0"
+homepage: https://github.com/sqlpage/SQLPage
+author: lovasoa
+license: MIT
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: SQLPage
+    description: "只用 SQL 就能搭数据应用：写 .sql 文件即可渲染表格、表单、图表与地图。"
+  en:
+    name: SQLPage
+    description: "Build data-driven web apps with just SQL: .sql files render tables, forms, charts and maps."
